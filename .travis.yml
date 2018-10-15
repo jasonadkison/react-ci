@@ -12,3 +12,15 @@ script:
   - docker run jadkison/react-ci npm run test -- --coverage
 
 # Deploy
+deploy:
+  on:
+    branch: master
+  provider: elasticbeanstalk
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key:
+    secure: "$AWS_SECRET_ACCESS_KEY"
+  region: "us-east-1"
+  app: "react-ci"
+  env: "ReactCi-env"
+  bucket_name: "elasticbeanstalk-us-east-1-610263152259"
+  bucket_path: "react-ci"
