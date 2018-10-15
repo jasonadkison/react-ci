@@ -1,0 +1,14 @@
+# Prepare docker
+sudo: required
+services:
+  - docker
+
+# Build image using Dockerfile.dev
+before_install:
+  - docker build -t jadkison/react-ci -f Dockerfile.dev .
+
+# Run tests
+script:
+  - docker run jadkison/react-ci npm run test -- --coverage
+
+# Deploy
